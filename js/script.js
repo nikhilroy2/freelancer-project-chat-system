@@ -56,9 +56,9 @@ if (h > 12) {
 
         <div class="msg_more_window msg_more_window_hide"> 
         
-        <button class="msg_btn"> Bookmarks </button>
-        <button class="msg_btn"> Save </button>
-        <button class="msg_btn"> Remove </button>
+        
+       
+        <button class="msg_btn msg_remove_btn"> Remove </button>
         
         </div>
         <span class="show_msg_span_text">
@@ -76,15 +76,15 @@ if (h > 12) {
    // let msg_more_window = document.querySelector('.msg_more_window');
 
 
-      let msg_more_option = document.querySelectorAll('.msg_more_option');
-      msg_more_option.forEach(function(m){
-          m.onclick = function(){
-             m.nextElementSibling.classList.remove('msg_more_window_hide');
-             m.nextElementSibling.classList.add("window_close");
-          }
+    //   let msg_more_option = document.querySelectorAll('.msg_more_option');
+    //   msg_more_option.forEach(function(m){
+    //       m.onclick = function(){
+    //          m.nextElementSibling.classList.remove('msg_more_window_hide');
+    //          m.nextElementSibling.classList.add("window_close");
+    //       }
           
           
-      })
+    //   })
       
 
     //  var itm = document.getElementById("myLit2").lastChild;
@@ -319,6 +319,11 @@ function showstickers(m) {
 // for stickers slide end
 
 
+
+
+// for mojis slide start
+
+
 // let icon_button_wrapper = document.querySelector('.icon_button_wrapper');
 let mojis_slide = document.querySelectorAll('ul.mojis_slide');
 // let mojis_btn = document.querySelectorAll('.btn');
@@ -348,16 +353,41 @@ function showmojis(m) {
 }
 
 
-
-// for mojis slide start
-
-
-
-
-
-
 //for mojis slide end
 
+
+// for appreciation slide start
+
+// let icon_button_wrapper = document.querySelector('.icon_button_wrapper');
+let Appreciation_slide = document.querySelectorAll('ul.Appreciation_slide');
+// let mojis_btn = document.querySelectorAll('.btn');
+let Appreciation_slide_index = 1;
+
+showAppreciation_slide(Appreciation_slide_index);
+
+function Appreciation_slide_control(m) {
+    showAppreciation_slide(Appreciation_slide_index = m);
+}
+
+
+function showAppreciation_slide(m) {
+    for (let i = 0; i < Appreciation_slide.length; i++) {
+        Appreciation_slide[i].style.display = 'none';
+    }
+    Appreciation_slide[Appreciation_slide_index - 1].style.display = 'flex';
+
+
+    // btn_active.forEach(function(b){
+    //     if (b.classList.contains('btn-active')){
+    //         b.classList.remove('btn-active');
+    //     } 
+    //     btn_active[icon_slide_index - 1].classList.add('btn-active');
+
+    // })
+}
+
+
+// for appreciation slide end
 
 
 
@@ -434,9 +464,7 @@ if (h > 12) {
         </span>
         <div class="msg_more_window msg_more_window_hide"> 
         
-        <button class="msg_btn"> Bookmarks </button>
-        <button class="msg_btn"> Save </button>
-        <button class="msg_btn"> Remove </button>
+        <button class="msg_btn msg_remove_btn"> Remove </button>
         
         </div>
         
@@ -447,17 +475,6 @@ if (h > 12) {
     let show_msg_now = document.querySelectorAll('.show_msg_now');
     // msg sending more option
    // let msg_more_window = document.querySelector('.msg_more_window');
-
-
-      let msg_more_option = document.querySelectorAll('.msg_more_option');
-      msg_more_option.forEach(function(m){
-          m.onclick = function(){
-             m.nextElementSibling.classList.remove('msg_more_window_hide');
-             m.nextElementSibling.classList.add("window_close");
-          }
-          
-          
-      })
 
 
 
@@ -482,6 +499,8 @@ let setUpdate = setInterval(updateFunction, 10);
 
 function updateFunction() {
 
+    // for  scroll update...........
+
     let show_msg_now = document.querySelectorAll('.show_msg_now');
     if (show_msg_now.length > 5) {
         msg_showing_box.setAttribute('style', 'align-items: flex-end');
@@ -490,7 +509,52 @@ function updateFunction() {
 
     }
 
-    // scroll update
+
+    // for msg more option update............
+
+
+    let msg_more_option = document.querySelectorAll('.msg_more_option');
+    let text_input = document.querySelector('#text_input');
+    msg_more_option.forEach(function(m,n,o){
+       
+        if (m.nextElementSibling.classList.contains("window_close")) {
+            text_input.onfocus = function(){
+                m.nextElementSibling.classList.add('msg_more_window_hide');
+            };
+           
+        }
+        m.onclick = function(){
+            m.nextElementSibling.classList.toggle('msg_more_window_hide');
+            m.nextElementSibling.classList.add("window_close");
+         }
+    })
+
+    // for remove msg_remove_btn update..............
+    let msg_remove_btn = document.querySelectorAll('.msg_remove_btn');
+    let msg_send_alert = document.querySelector('.msg_send_alert');
+    let btn_send_remove = document.querySelector('.btn_send_remove');
+    let btn_send_cancel = document.querySelector('.btn_send_cancel');
+    let rvMove = document.querySelector('.rvMove');
+    msg_remove_btn.forEach(function(remove){
+        remove.onclick = function(){
+            msg_send_alert.style.display = 'block';
+            this.classList.add('rvMove');
+           
+        };
+        btn_send_remove.onclick = function(){
+            rvMove.parentElement.parentElement.remove();
+            msg_send_alert.style.display = 'none';
+            rvMove.classList.remove('rvMove');
+        }
+      
+        btn_send_cancel.onclick = function(){
+            msg_send_alert.style.display = 'none';
+            let msg_more_window = document.querySelector('.msg_more_window');
+            msg_more_window.classList.add('msg_more_window_hide');
+
+        }
+    })    
+
 
 
 }

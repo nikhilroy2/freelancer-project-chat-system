@@ -26,7 +26,7 @@ body {
 .msg_wrapper {
   border: 2px solid #eee;
   position: relative;
-  width: 600px;
+  width: 800px;
   height: 600px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -34,7 +34,56 @@ body {
   -webkit-box-align: end;
       -ms-flex-align: end;
           align-items: flex-end;
-  padding: 10px 10px 0 10px;
+}
+
+.msg_send_alert {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 90%;
+  height: 200px;
+  background: #fff;
+  z-index: 1000;
+  -webkit-box-shadow: 0 0 3px 0px #000;
+          box-shadow: 0 0 3px 0px #000;
+  border-radius: 5px;
+  padding: 5px;
+  display: none;
+}
+
+.msg_send_alert h2, .msg_send_alert h4 {
+  margin: 5px;
+  margin-left: 20px;
+}
+
+.msg_send_alert h2 {
+  margin-top: 20px;
+}
+
+.msg_send_alert .btn_wrapper {
+  text-align: right;
+  margin-right: 30px;
+  margin-top: 30px;
+}
+
+.msg_send_alert .btn_wrapper .btn_send_remove,
+.msg_send_alert .btn_wrapper .btn_send_cancel {
+  border: none;
+  outline: none;
+  background: #CCCCCE;
+  display: inline-block;
+  padding: 6px 15px;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+.msg_send_alert .btn_wrapper .btn_send_remove:hover,
+.msg_send_alert .btn_wrapper .btn_send_cancel:hover {
+  background: #3394E1;
+  cursor: pointer;
+  color: white;
 }
 
 .msg_showing_box {
@@ -88,12 +137,10 @@ body {
 
 .msg_showing_box .show_msg_now .msg_more_window {
   position: absolute;
-  width: 100px;
   background: #fff;
   border: 1px solid #ddd;
-  right: 0px;
+  right: 25px;
   bottom: 80%;
-  padding: 10px;
 }
 
 .msg_showing_box .show_msg_now .msg_more_window .msg_btn {
@@ -101,18 +148,16 @@ body {
   width: 100%;
   outline: none;
   border: none;
-  background: #eee;
+  background: #F0F3F4;
   color: #000;
-  padding: 4px;
+  padding: 8px 12px;
   cursor: pointer;
-  margin: 2px;
   -webkit-transition: .5s;
   transition: .5s;
 }
 
 .msg_showing_box .show_msg_now .msg_more_window .msg_btn:hover {
-  background: #222;
-  color: #fff;
+  background: #DCD9D8;
 }
 
 .msg_showing_box .show_msg_now .msg_more_window_hide {
@@ -131,6 +176,12 @@ body {
   font-size: 16px;
   width: 100%;
   padding-left: 70px;
+  outline: none;
+  border: 1px solid rgba(85, 85, 85, 0.5);
+}
+
+.input_wrapper #text_input:focus {
+  border: 1px solid rgba(85, 85, 85, 0.5);
   outline: none;
 }
 
@@ -202,18 +253,26 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   padding: 0px 10px;
 }
 
+.icon_button_wrapper .icon_search_li {
+  -webkit-box-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
+  text-align: right;
+}
+
 .icon_button_wrapper li {
   list-style: none;
   position: relative;
+  margin: 0px 3px;
 }
 
 .icon_button_wrapper li .btn {
@@ -245,7 +304,7 @@ body {
 
 .icon_button_wrapper li #search_fa {
   position: absolute;
-  left: 10px;
+  right: 43%;
   top: 50%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
@@ -407,6 +466,10 @@ ul.stickers_slide {
 }
 
 ul.mojis_slide {
+  display: none;
+}
+
+ul.Appreciation_slide {
   display: none;
 }
 /*# sourceMappingURL=style.css.map */
